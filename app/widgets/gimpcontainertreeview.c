@@ -467,6 +467,9 @@ gimp_container_tree_view_menu_position (GtkMenu  *menu,
       path = gtk_tree_model_get_path (tree_view->model, &selected_iter);
       gtk_tree_view_get_cell_area (tree_view->view, path,
                                    tree_view->main_column, &cell_rect);
+      gtk_tree_view_convert_bin_window_to_widget_coords (tree_view->view,
+                                                         cell_rect.x, cell_rect.y,
+                                                         &cell_rect.x, &cell_rect.y);
       gtk_tree_path_free (path);
 
       center = cell_rect.y + cell_rect.height / 2;
